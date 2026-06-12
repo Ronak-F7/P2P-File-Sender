@@ -54,26 +54,32 @@ function Receiver() {
 
     const answerOffer = async (offer) => {
         const config = {
-            iceServers: [
-                { urls: 'stun:stun.l.google.com:19302' },
-                { urls: 'stun:stun1.l.google.com:19302' },
-                {
-                    urls: 'turn:openrelay.metered.ca:80',
-                    username: 'openrelayproject',
-                    credential: 'openrelayproject'
-                },
-                {
-                    urls: 'turn:openrelay.metered.ca:443',
-                    username: 'openrelayproject',
-                    credential: 'openrelayproject'
-                },
-                {
-                    urls: 'turn:openrelay.metered.ca:443?transport=tcp',
-                    username: 'openrelayproject',
-                    credential: 'openrelayproject'
-                }
-            ]
-        }
+  iceServers: [
+    {
+      urls: "stun:stun.relay.metered.ca:80",
+    },
+    {
+      urls: "turn:global.relay.metered.ca:80",
+      username: "238e35fe53d9cf4ec25a12bf",
+      credential: "pANa+d3KHum+MX1/",
+    },
+    {
+      urls: "turn:global.relay.metered.ca:80?transport=tcp",
+      username: "238e35fe53d9cf4ec25a12bf",
+      credential: "pANa+d3KHum+MX1/",
+    },
+    {
+      urls: "turn:global.relay.metered.ca:443",
+      username: "238e35fe53d9cf4ec25a12bf",
+      credential: "pANa+d3KHum+MX1/",
+    },
+    {
+      urls: "turns:global.relay.metered.ca:443?transport=tcp",
+      username: "238e35fe53d9cf4ec25a12bf",
+      credential: "pANa+d3KHum+MX1/",
+    },
+  ]
+}
 
         peerRef.current = new RTCPeerConnection(config)
 
