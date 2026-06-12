@@ -21,11 +21,21 @@ io.on('connection', (socket) => {
   console.log('Someone connected:', socket.id)
 
   socket.on('join-room', (roomId) => {
-    socket.join(roomId)
-    socketRooms[socket.id] = roomId
-    console.log(`Socket ${socket.id} joined room ${roomId}`)
+  socket.join(roomId)
+  socketRooms[socket.id] = roomId
+  console.log(`Socket ${socket.id} joined room ${roomId}`)
+
+  // Get all other sockets in this room
+  const clients = io.sockets.adapter.rooms.get(roomId)
+  const otherClients = clients ? [...clients].filter(id => id !== socket.id) : []
+
+  if (otherClients.length > 0) {
+    // Someone was already in the room — notify both
     socket.to(roomId).emit('user-joined', socket.id)
-  })
+    // Also tell the newcomer who's already there
+    socket.emit('user-joined', otherClients[0])
+  }
+})
 
   socket.on('offer', (data) => {
     socket.to(data.roomId).emit('offer', {
