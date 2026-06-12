@@ -71,32 +71,32 @@ function Sender() {
 
   const startWebRTC = async () => {
     const config = {
-  iceServers: [
-    {
-      urls: "stun:stun.relay.metered.ca:80",
-    },
-    {
-      urls: "turn:global.relay.metered.ca:80",
-      username: "238e35fe53d9cf4ec25a12bf",
-      credential: "pANa+d3KHum+MX1/",
-    },
-    {
-      urls: "turn:global.relay.metered.ca:80?transport=tcp",
-      username: "238e35fe53d9cf4ec25a12bf",
-      credential: "pANa+d3KHum+MX1/",
-    },
-    {
-      urls: "turn:global.relay.metered.ca:443",
-      username: "238e35fe53d9cf4ec25a12bf",
-      credential: "pANa+d3KHum+MX1/",
-    },
-    {
-      urls: "turns:global.relay.metered.ca:443?transport=tcp",
-      username: "238e35fe53d9cf4ec25a12bf",
-      credential: "pANa+d3KHum+MX1/",
-    },
-  ]
-}
+      iceServers: [
+        {
+          urls: "stun:stun.relay.metered.ca:80",
+        },
+        {
+          urls: "turn:global.relay.metered.ca:80",
+          username: "238e35fe53d9cf4ec25a12bf",
+          credential: "pANa+d3KHum+MX1/",
+        },
+        {
+          urls: "turn:global.relay.metered.ca:80?transport=tcp",
+          username: "238e35fe53d9cf4ec25a12bf",
+          credential: "pANa+d3KHum+MX1/",
+        },
+        {
+          urls: "turn:global.relay.metered.ca:443",
+          username: "238e35fe53d9cf4ec25a12bf",
+          credential: "pANa+d3KHum+MX1/",
+        },
+        {
+          urls: "turns:global.relay.metered.ca:443?transport=tcp",
+          username: "238e35fe53d9cf4ec25a12bf",
+          credential: "pANa+d3KHum+MX1/",
+        },
+      ]
+    }
 
     peerRef.current = new RTCPeerConnection(config)
 
@@ -232,6 +232,9 @@ function Sender() {
       <div className="page">
 
         <div className="header">
+          <div className="wake-banner full">
+            First visit? Wait ~60 seconds for the server to wake up.
+          </div>
           <div>
             <div className="logo">P2P <span>SHARE</span></div>
             <div className="tagline">Direct · Encrypted · Zero Server</div>

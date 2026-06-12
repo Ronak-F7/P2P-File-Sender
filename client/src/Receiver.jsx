@@ -54,32 +54,32 @@ function Receiver() {
 
     const answerOffer = async (offer) => {
         const config = {
-  iceServers: [
-    {
-      urls: "stun:stun.relay.metered.ca:80",
-    },
-    {
-      urls: "turn:global.relay.metered.ca:80",
-      username: "238e35fe53d9cf4ec25a12bf",
-      credential: "pANa+d3KHum+MX1/",
-    },
-    {
-      urls: "turn:global.relay.metered.ca:80?transport=tcp",
-      username: "238e35fe53d9cf4ec25a12bf",
-      credential: "pANa+d3KHum+MX1/",
-    },
-    {
-      urls: "turn:global.relay.metered.ca:443",
-      username: "238e35fe53d9cf4ec25a12bf",
-      credential: "pANa+d3KHum+MX1/",
-    },
-    {
-      urls: "turns:global.relay.metered.ca:443?transport=tcp",
-      username: "238e35fe53d9cf4ec25a12bf",
-      credential: "pANa+d3KHum+MX1/",
-    },
-  ]
-}
+            iceServers: [
+                {
+                    urls: "stun:stun.relay.metered.ca:80",
+                },
+                {
+                    urls: "turn:global.relay.metered.ca:80",
+                    username: "238e35fe53d9cf4ec25a12bf",
+                    credential: "pANa+d3KHum+MX1/",
+                },
+                {
+                    urls: "turn:global.relay.metered.ca:80?transport=tcp",
+                    username: "238e35fe53d9cf4ec25a12bf",
+                    credential: "pANa+d3KHum+MX1/",
+                },
+                {
+                    urls: "turn:global.relay.metered.ca:443",
+                    username: "238e35fe53d9cf4ec25a12bf",
+                    credential: "pANa+d3KHum+MX1/",
+                },
+                {
+                    urls: "turns:global.relay.metered.ca:443?transport=tcp",
+                    username: "238e35fe53d9cf4ec25a12bf",
+                    credential: "pANa+d3KHum+MX1/",
+                },
+            ]
+        }
 
         peerRef.current = new RTCPeerConnection(config)
 
@@ -206,83 +206,86 @@ function Receiver() {
     }
 
     return (
-  <>
-    <div className="grid-bg"></div>
-    <div className="glow-pink"></div>
-    <div className="glow-yellow"></div>
+        <>
+            <div className="grid-bg"></div>
+            <div className="glow-pink"></div>
+            <div className="glow-yellow"></div>
 
-    <div className="page">
+            <div className="page">
 
-      <div className="header">
-        <div>
-          <div className="logo">P2P <span>SHARE</span></div>
-          <div className="tagline">Direct · Encrypted · Zero Server</div>
-        </div>
-        {fileMeta && !disconnected && (
-          <div className="connection-badge">● Connected</div>
-        )}
-      </div>
+                <div className="header">
+                    <div className="wake-banner full">
+                        First visit? Wait ~60 seconds for the server to wake up.
+                    </div>
+                    <div>
+                        <div className="logo">P2P <span>SHARE</span></div>
+                        <div className="tagline">Direct · Encrypted · Zero Server</div>
+                    </div>
+                    {fileMeta && !disconnected && (
+                        <div className="connection-badge">● Connected</div>
+                    )}
+                </div>
 
-      <div className="drop-zone">
-        <div className="corner tl"></div>
-        <div className="corner tr"></div>
-        <div className="corner bl"></div>
-        <div className="corner br"></div>
-        <div className="drop-icon">{fileMeta ? '📥' : '📡'}</div>
-        <div className="drop-title">{fileMeta ? fileMeta.name : 'Waiting for Sender...'}</div>
-        <div className="drop-sub">{fileMeta ? formatSize(fileMeta.size) : roomId}</div>
-      </div>
+                <div className="drop-zone">
+                    <div className="corner tl"></div>
+                    <div className="corner tr"></div>
+                    <div className="corner bl"></div>
+                    <div className="corner br"></div>
+                    <div className="drop-icon">{fileMeta ? '📥' : '📡'}</div>
+                    <div className="drop-title">{fileMeta ? fileMeta.name : 'Waiting for Sender...'}</div>
+                    <div className="drop-sub">{fileMeta ? formatSize(fileMeta.size) : roomId}</div>
+                </div>
 
-      <div className="bottom-row">
+                <div className="bottom-row">
 
-        {fileMeta && !accepted && (
-          <>
-            <div className="info-card">
-              <div className="card-label">File Name</div>
-              <div className="card-value">{fileMeta.name}</div>
-              <div className="card-sub">{fileMeta.name.split('.').pop().toUpperCase()} File</div>
+                    {fileMeta && !accepted && (
+                        <>
+                            <div className="info-card">
+                                <div className="card-label">File Name</div>
+                                <div className="card-value">{fileMeta.name}</div>
+                                <div className="card-sub">{fileMeta.name.split('.').pop().toUpperCase()} File</div>
+                            </div>
+                            <div className="info-card">
+                                <div className="card-label">File Size</div>
+                                <div className="card-value">{formatSize(fileMeta.size)}</div>
+                                <div className="card-sub">Incoming transfer</div>
+                            </div>
+                            <button className="btn-generate full" onClick={handleAccept}>
+                                Accept & Download
+                            </button>
+                        </>
+                    )}
+
+                    {accepted && (
+                        <div className="progress-wrap full">
+                            <div className="progress-row">
+                                <span className="progress-label">Receiving</span>
+                                <span className="progress-value">
+                                    {progress}%{speed > 0 ? ` · ${(speed / (1024 * 1024)).toFixed(1)} MB/s` : ''}
+                                </span>
+                            </div>
+                            <div className="bar-bg">
+                                <div className="bar-fill" style={{ width: `${progress}%` }}></div>
+                            </div>
+                        </div>
+                    )}
+
+                    {disconnected && (
+                        <div className="error-bar full">
+                            <span className="error-text">⚠ Sender disconnected</span>
+                        </div>
+                    )}
+
+                    <div className="status-bar full">
+                        <div className="dot"></div>
+                        <span className="status-text">{status}</span>
+                    </div>
+
+                </div>
+
             </div>
-            <div className="info-card">
-              <div className="card-label">File Size</div>
-              <div className="card-value">{formatSize(fileMeta.size)}</div>
-              <div className="card-sub">Incoming transfer</div>
-            </div>
-            <button className="btn-generate full" onClick={handleAccept}>
-              Accept & Download
-            </button>
-          </>
-        )}
-
-        {accepted && (
-          <div className="progress-wrap full">
-            <div className="progress-row">
-              <span className="progress-label">Receiving</span>
-              <span className="progress-value">
-                {progress}%{speed > 0 ? ` · ${(speed / (1024 * 1024)).toFixed(1)} MB/s` : ''}
-              </span>
-            </div>
-            <div className="bar-bg">
-              <div className="bar-fill" style={{ width: `${progress}%` }}></div>
-            </div>
-          </div>
-        )}
-
-        {disconnected && (
-          <div className="error-bar full">
-            <span className="error-text">⚠ Sender disconnected</span>
-          </div>
-        )}
-
-        <div className="status-bar full">
-          <div className="dot"></div>
-          <span className="status-text">{status}</span>
-        </div>
-
-      </div>
-
-    </div>
-  </>
-)
+        </>
+    )
 }
 
 export default Receiver

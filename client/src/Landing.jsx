@@ -44,6 +44,18 @@ function Landing() {
       <div className="landing-page">
 
         <div className="landing-header">
+          <div style={{
+            background: 'rgba(255,215,0,0.06)',
+            border: '1px solid rgba(255,215,0,0.2)',
+            borderRadius: '8px',
+            padding: '0.75rem 1rem',
+            fontSize: '11px',
+            color: '#ffd700',
+            textAlign: 'center',
+            letterSpacing: '0.5px'
+          }}>
+            ⚠ First visit? Wait ~60 seconds for the server to wake up.
+          </div>
           <div className="logo">P2P <span>SHARE</span></div>
           <div className="tagline">Direct · Encrypted · Zero Server</div>
         </div>
