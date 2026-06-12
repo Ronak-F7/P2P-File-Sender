@@ -21,7 +21,7 @@ function Sender() {
   useEffect(() => {
     if (!roomId) return
 
-    socketRef.current = io('http://localhost:3001')
+    socketRef.current = io('https://p2p-file-sender-server.onrender.com')
     socketRef.current.emit('join-room', roomId)
 
     socketRef.current.on('user-joined', () => {
