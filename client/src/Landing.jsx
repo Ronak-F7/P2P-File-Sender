@@ -71,13 +71,13 @@ function Landing() {
 
               <div className="landing-buttons">
                 <button className="btn-send" onClick={handleSend}>
-                  <span className="btn-icon">📤</span>
+                  <span className="btn-icon">⬆</span>
                   <span className="btn-label">Send File</span>
                   <span className="btn-hint">Generate a room code</span>
                 </button>
 
                 <button className="btn-receive" onClick={handleReceive}>
-                  <span className="btn-icon">📥</span>
+                  <span className="btn-icon">⬇</span>
                   <span className="btn-label">Receive File</span>
                   <span className="btn-hint">Enter a room code</span>
                 </button>
@@ -110,7 +110,7 @@ function Landing() {
 
               <div className="landing-buttons">
                 <button className="btn-send" onClick={handleJoin}>
-                  <span className="btn-icon">🔗</span>
+                  <span className="btn-icon">⚡</span>
                   <span className="btn-label">Join Room</span>
                   <span className="btn-hint">Connect to sender</span>
                 </button>

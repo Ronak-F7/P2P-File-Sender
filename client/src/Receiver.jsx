@@ -231,7 +231,7 @@ function Receiver() {
                     <div className="corner tr"></div>
                     <div className="corner bl"></div>
                     <div className="corner br"></div>
-                    <div className="drop-icon">{fileMeta ? '📥' : '📡'}</div>
+                    <div className="drop-icon">{fileMeta ? '⬇' : '🔒'}</div>
                     <div className="drop-title">{fileMeta ? fileMeta.name : 'Waiting for Sender...'}</div>
                     <div className="drop-sub">{fileMeta ? formatSize(fileMeta.size) : roomId}</div>
                 </div>
