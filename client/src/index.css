@@ -601,3 +601,18 @@ body {
   letter-spacing: 0.5px;
   text-align: center;
 }
+
+.drop-icon {
+  font-size: 48px;
+  color: #ff0080;
+  margin-bottom: 1rem;
+  position: relative;
+  z-index: 1;
+  transition: transform 0.3s ease;
+  line-height: 1;
+}
+
+.btn-icon {
+  font-size: 28px;
+  color: #ff0080;
+}

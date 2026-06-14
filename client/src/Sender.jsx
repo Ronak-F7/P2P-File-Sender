@@ -255,7 +255,7 @@ function Sender() {
           <div className="corner tr"></div>
           <div className="corner bl"></div>
           <div className="corner br"></div>
-          <div className="drop-icon">{file ? '⚡' : '🖧'}</div>
+          <div className="drop-icon">{file ? '▸▸' : '◈'}</div>
           <div className="drop-title">{file ? 'File Ready' : 'Drop File Here'}</div>
           <div className="drop-sub">{file ? file.name : 'or click to browse · max 50mb'}</div>
         </div>
